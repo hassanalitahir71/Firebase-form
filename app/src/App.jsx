@@ -5,6 +5,7 @@ function App() {
   return (
    <div className="bg-mint-500 h-150 w-92 p-4 flex flex-col items-center  ">
       <NavBar />
+      
     </div>
   )
 }
