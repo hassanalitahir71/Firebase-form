@@ -8,6 +8,7 @@ import { db } from "./config/firebase";
 import { getDocs } from "firebase/firestore";
 import ContactSection from "./components/ContactSection";
 import Modal from "./components/Modal";
+import AddAndUpdate from "./components/AddAndUpdate";
 
 import "./App.css";
 function App() {
@@ -54,9 +55,8 @@ function App() {
         </div>
         <ContactSection contacts={contacts} />
       </div>
-      <Modal Open={Open} onClose={onClose}>
-        hi
-      </Modal>
+
+      <AddAndUpdate Open={Open} onClose={onClose} />
     </>
   );
 }
