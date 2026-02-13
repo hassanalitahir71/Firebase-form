@@ -24,19 +24,20 @@ The central hub where you can view all contacts and access search/add features.
 **Real-Time Search**
 Efficiently filter through hundreds of contacts instantly.
 
-<img width="679" height="834" alt="Screenshot (4)" src="https://github.com/user-attachments/assets/e733bff0-491e-472c-804c-399d61085cc1" />
+<img width="1920" height="836" alt="Screenshot (4)" src="https://github.com/user-attachments/assets/6cc28e3f-25e8-4956-8542-ca01166d2f53" />
 
 
 **Contact Management (Add/Edit)**
 Clean modal interfaces for adding new entries or updating existing ones with built-in validation.
 
-<img width="710" height="838" alt="Screenshot (5)" src="https://github.com/user-attachments/assets/86b10f83-3532-464a-afb5-a683c2db3d91" />
-<img width="689" height="838" alt="Screenshot (6)" src="https://github.com/user-attachments/assets/19ab614d-40d5-4f62-b082-b3abf76fe16c" />
+<img width="1920" height="832" alt="Screenshot (5)" src="https://github.com/user-attachments/assets/bc3eae0a-3b10-40c9-82b4-589b4e419cd0" />
+<img width="1920" height="836" alt="Screenshot (6)" src="https://github.com/user-attachments/assets/7f7a49ba-ce28-4d2e-8aff-a1ba30bcec93" />
 
 
 **User Feedback**
 Instant toast notifications for successful actions.
 
-<img width="659" height="834" alt="Screenshot (3)" src="https://github.com/user-attachments/assets/bc496ab3-dd35-4564-926b-83803504177f" />
+<img width="1920" height="831" alt="Screenshot (3)" src="https://github.com/user-attachments/assets/16941554-ed0b-4300-9f43-4a2305c2eea6" />
+
 
 
