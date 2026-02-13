@@ -9,13 +9,13 @@ import { getDocs } from "firebase/firestore";
 import ContactSection from "./components/ContactSection";
 import Modal from "./components/Modal";
 import AddAndUpdate from "./components/AddAndUpdate";
+import hooks from "./assets/Hooks/hooks";
 
 import "./App.css";
 function App() {
   const [contacts, setContacts] = useState([]);
-  const [Open, setOpen] = useState(false);
-  const onOpen = () => setOpen(true);
-  const onClose = () => setOpen(false);
+  const { Open, onOpen, onClose } = hooks();
+  
 
   useEffect(() => {
     const fetchContacts = async () => {
