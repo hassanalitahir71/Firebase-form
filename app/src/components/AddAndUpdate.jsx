@@ -14,7 +14,7 @@ function AddAndUpdate({ Open, onClose, contact }) {
     }
   };
 
-  return (
+  return(
     <div>
       <Modal Open={Open} onClose={onClose} title="Add Contact">
         <Formik
