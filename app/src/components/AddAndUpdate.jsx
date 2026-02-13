@@ -1,10 +1,16 @@
 import React from "react";
 import Modal from "./Modal";
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { updateDoc, doc } from "firebase/firestore";
 import Toast from "react-hot-toast";
+import * as Yup from "yup";
+
+const ContactSchema = Yup.object().shape({
+  name: Yup.string().required("Name is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
+});
 
 function AddAndUpdate({ Open, onClose, contact, isUpdate }) {
   const addContact = async (contact) => {
@@ -31,6 +37,7 @@ function AddAndUpdate({ Open, onClose, contact, isUpdate }) {
     <div>
       <Modal Open={Open} onClose={onClose} title="Add Contact">
         <Formik
+          validationSchema={ContactSchema}
           initialValues={
             isUpdate && contact
               ? { name: contact.name, email: contact.email }
@@ -53,6 +60,11 @@ function AddAndUpdate({ Open, onClose, contact, isUpdate }) {
                 placeholder="Name"
                 className="border-Gray h-8 w-72 rounded border p-1"
               />
+              <ErrorMessage
+                component="div"
+                name="name"
+                className="text-xs font-medium text-red-600"
+              />
             </div>
             <div className="flex flex-col gap-1">
               <label htmlFor="email">Email:</label>
@@ -60,6 +72,11 @@ function AddAndUpdate({ Open, onClose, contact, isUpdate }) {
                 name="email"
                 placeholder="Email"
                 className="border-Gray h-8 w-72 rounded border p-1"
+              />
+              <ErrorMessage
+                component="div"
+                name="email"
+                className="text-xs font-medium text-red-600"
               />
             </div>
             <button className="p-0.1 mt-0.5 mr-3 h-7 w-30 self-end rounded-md border bg-amber-400">

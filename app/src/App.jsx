@@ -15,6 +15,22 @@ function App() {
   const [contacts, setContacts] = useState([]);
   const { Open, onOpen, onClose } = hooks();
 
+  const filterContacts = (e) => {
+    const value = e.target.value;
+
+    const contactSRef = collection(db, "contacts");
+        onSnapshot(contactSRef, (snapshot) => {
+          const contactsData = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+
+          const filteredContacts = contactsData.filter((contact) =>
+            contact.name.toLowerCase().includes(value.toLowerCase())
+          );
+          setContacts(filteredContacts);
+        });};
+
   useEffect(() => {
     const fetchContacts = async () => {
       try {
@@ -41,6 +57,7 @@ function App() {
           <div className="mt- align-center relative flex w-80 justify-center rounded-lg">
             <IoSearchSharp className="text-White absolute top-1/2 left-1 -translate-y-1/2 text-3xl" />
             <input
+            onChange={filterContacts}
               type="text"
               placeholder="Search contacts..."
               className="text-White h-10 w-full rounded-lg border border-white p-2 pl-9 focus:outline-none"
