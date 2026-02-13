@@ -18,7 +18,7 @@ Interactive Notifications: Beautiful toast alerts provided by React Hot Toast.
 **Main Dashboard**
 The central hub where you can view all contacts and access search/add features.
 
-<img width="581" height="754" alt="Screenshot (2)" src="https://github.com/user-attachments/assets/5fc4462c-9161-4ebc-8a1f-289416bb36a9" />
+<img width="1920" height="836" alt="Screenshot (2)" src="https://github.com/user-attachments/assets/0d9df304-8dbd-46a1-b632-c3f720df9a72" />
 
 
 **Real-Time Search**
@@ -38,4 +38,5 @@ Clean modal interfaces for adding new entries or updating existing ones with bui
 Instant toast notifications for successful actions.
 
 <img width="659" height="834" alt="Screenshot (3)" src="https://github.com/user-attachments/assets/bc496ab3-dd35-4564-926b-83803504177f" />
+
 
