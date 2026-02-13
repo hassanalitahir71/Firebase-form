@@ -1,4 +1,3 @@
-import React from "react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { createPortal } from "react-dom";
 

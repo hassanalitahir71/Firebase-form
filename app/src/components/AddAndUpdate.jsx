@@ -1,27 +1,55 @@
 import React from "react";
 import Modal from "./Modal";
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
+import { updateDoc, doc } from "firebase/firestore";
+import Toast from "react-hot-toast";
+import * as Yup from "yup";
 
-function AddAndUpdate({ Open, onClose, contact }) {
+const ContactSchema = Yup.object().shape({
+  name: Yup.string().required("Name is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
+});
+
+function AddAndUpdate({ Open, onClose, contact, isUpdate }) {
   const addContact = async (contact) => {
     try {
       const contactsRef = collection(db, "contacts");
       await addDoc(contactsRef, contact);
+      Toast.success("Contact added successfully");
     } catch (error) {
       console.error("Error adding contact:", error);
     }
   };
 
-  return(
+  const updateContact = async (contact, id) => {
+    try {
+      const contactRef = doc(db, "contacts", id);
+      await updateDoc(contactRef, contact);
+      Toast.success("Contact updated successfully");
+    } catch (error) {
+      console.error("Error updating contact:", error);
+    }
+  };
+
+  return (
     <div>
       <Modal Open={Open} onClose={onClose} title="Add Contact">
         <Formik
-          initialValues={{ name: "", email: "" }}
+          validationSchema={ContactSchema}
+          initialValues={
+            isUpdate && contact
+              ? { name: contact.name, email: contact.email }
+              : { name: "", email: "" }
+          }
           onSubmit={(values) => {
-            addContact(values);
-            console.log(values);
+            if (isUpdate) {
+              updateContact(values, contact.id);
+            } else {
+              addContact(values);
+            }
+            onClose();
           }}
         >
           <Form className="flex h-full w-full flex-col items-center gap-3">
@@ -32,6 +60,11 @@ function AddAndUpdate({ Open, onClose, contact }) {
                 placeholder="Name"
                 className="border-Gray h-8 w-72 rounded border p-1"
               />
+              <ErrorMessage
+                component="div"
+                name="name"
+                className="text-xs font-medium text-red-600"
+              />
             </div>
             <div className="flex flex-col gap-1">
               <label htmlFor="email">Email:</label>
@@ -40,9 +73,14 @@ function AddAndUpdate({ Open, onClose, contact }) {
                 placeholder="Email"
                 className="border-Gray h-8 w-72 rounded border p-1"
               />
+              <ErrorMessage
+                component="div"
+                name="email"
+                className="text-xs font-medium text-red-600"
+              />
             </div>
             <button className="p-0.1 mt-0.5 mr-3 h-7 w-30 self-end rounded-md border bg-amber-400">
-              Add Contact
+              {isUpdate ? "Update" : "Add"} Contact
             </button>
           </Form>
         </Formik>
