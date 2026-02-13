@@ -2,8 +2,18 @@ import React from "react";
 import { CgProfile } from "react-icons/cg";
 import { RiEditCircleLine } from "react-icons/ri";
 import { TiUserDelete } from "react-icons/ti";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../config/firebase";
 
 function ContactSection({ contacts }) {
+  const deleteContact = async (id) => {
+    try {
+      await deleteDoc(doc(db, "contacts", id));
+    } catch (error) {
+      console.error("Error deleting contact:", error);
+    }
+  };
+
   return (
     <div className="h-100 w-full overflow-y-auto rounded-lg">
       {contacts.map((contact) => (
@@ -21,8 +31,8 @@ function ContactSection({ contacts }) {
             </div>
           </div>
           <div className="flex gap-4">
-            <RiEditCircleLine className="cursor-pointer text-3xl text-black" />
-            <TiUserDelete className="text-Purple cursor-pointer text-3xl" />
+            <RiEditCircleLine  className="cursor-pointer text-3xl text-black" />
+            <TiUserDelete onClick={() => deleteContact(contact.id)} className="text-Purple cursor-pointer text-3xl" />
           </div>
         </div>
       ))}

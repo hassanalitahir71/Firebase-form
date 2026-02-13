@@ -7,7 +7,6 @@ import { collection } from "firebase/firestore";
 import { db } from "./config/firebase";
 import { getDocs } from "firebase/firestore";
 import ContactSection from "./components/ContactSection";
-import Modal from "./components/Modal";
 import AddAndUpdate from "./components/AddAndUpdate";
 import hooks from "./assets/Hooks/hooks";
 
@@ -56,7 +55,7 @@ function App() {
         <ContactSection contacts={contacts} />
       </div>
 
-      <AddAndUpdate Open={Open} onClose={onClose} />
+      <AddAndUpdate Open={Open} onClose={onClose} contact={contacts} />
     </>
   );
 }
