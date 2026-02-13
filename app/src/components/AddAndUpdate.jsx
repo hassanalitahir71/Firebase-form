@@ -1,14 +1,26 @@
 import React from "react";
 import Modal from "./Modal";
 import { Field, Form, Formik } from "formik";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../config/firebase";
 
-function AddAndUpdate({ Open, onClose }) {
+function AddAndUpdate({ Open, onClose, contact }) {
+  const addContact = async (contact) => {
+    try {
+      const contactsRef = collection(db, "contacts");
+      await addDoc(contactsRef, contact);
+    } catch (error) {
+      console.error("Error adding contact:", error);
+    }
+  };
+
   return (
     <div>
-      <Modal Open={Open} onClose={onClose}>
+      <Modal Open={Open} onClose={onClose} title="Add Contact">
         <Formik
           initialValues={{ name: "", email: "" }}
           onSubmit={(values) => {
+            addContact(values);
             console.log(values);
           }}
         >
